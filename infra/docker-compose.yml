@@ -1,0 +1,11 @@
+services:
+  terraform:
+    image: hashicorp/terraform:1.9
+    container_name: terraform_infra
+    volumes:  
+      - ./infra:/infra
+      - ./scripts:/scripts
+    working_dir: /infra
+    env_file:
+      - .env
+

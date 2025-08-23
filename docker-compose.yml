@@ -1,0 +1,90 @@
+networks:
+  backend:
+    external: true
+
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v3.2.0
+    command: >
+      sh -c "pip install --user psycopg2-binary &&
+         mlflow server"
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./enviroment/.mlflow.env
+
+    networks:
+      backend:
+        aliases:
+          - mlflow.local
+
+  minio:
+    image: minio/minio
+    command: server /data
+    ports:
+      - "9000:9000"
+    env_file:
+      - ./enviroment/.minio.env
+    volumes:
+      - /data/minio:/data
+
+    networks:
+      backend:
+        aliases:
+          - minio.local
+    
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./enviroment/.postgres.env
+    volumes:
+      - /data/db:/var/lib/postgresql/data
+
+    networks:
+      backend:
+        aliases:
+          - postgres.local
+
+  airflow:
+    image: apache/airflow:slim-3.0.4rc2-python3.12
+    command: airflow standalone
+    env_file:
+      - ./enviroment/.airflow.env      
+    ports:
+      - "8080:8080"
+
+    networks:
+      backend:
+        aliases:
+          - airflow.local
+  
+  jupyter:
+    image: jupyter/base-notebook:python-3.11
+    command: >
+      sh -c "pip install pandas scikit-learn numpy redshift_connector mlflow psycopg2-binary && 
+      start-notebook.py" 
+    ports:
+      - "8888:8888"
+    env_file:
+      - ./enviroment/.mlflow.env
+      - ./enviroment/.postgres.env
+      - ./enviroment/.jupyter.env
+
+    networks:
+      backend:
+        aliases:
+          - jupyter.local
+
+  #ansible:
+  #  image: alpine/ansible:2.18.6
+  #  entrypoint: [ "ansible-playbook" ]
+  #  command: [ "-i", "/ansible/inventory.ini", "/ansible/playbook.yml" ]
+  #  volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #    #- ./ansible/inventory.ini:/ansible/inventory.ini
+  #    #- ./ansible/playbook.yml:/ansible/playbook.yml
+  #    - ./mlflow/scripts:/mlflow/scripts
+    

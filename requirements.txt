@@ -1,0 +1,8 @@
+facu-weather-flow==0.1.9
+boto3==1.40.5
+pandas==2.3.1
+track-flow==0.1.9
+pyarrow==21.0.0
+pendulum==3.1.0
+apache-airflow-providers-amazon==9.11.0
+apache-airflow-providers-postgres==6.2.3

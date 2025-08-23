@@ -1,0 +1,38 @@
+- name: Copy local -> running container with docker cp Jupyter
+  hosts: localhost
+  gather_facts: false
+  vars:
+    container_name: facuvgaa-data-spotify-climate-to-s3-redshift-mlflow-jupyter-1
+
+  tasks:
+    - name: Copiar directorios
+      ansible.builtin.command:
+        cmd: docker cp "{{ item.src }}/." "{{ container_name }}:{{ item.dest }}/"
+      loop:
+        - { src: "../mlflow/scripts", dest: "/home/jovyan/work" }
+        - { src: "../mlflow/scripts", dest: "/home/jovyan/scripts" }
+        - { src: "../mlflow/mlruns",  dest: "/home/jovyan/mlruns" }
+
+    - name: Crear directorios en el contenedor mlflow
+      ansible.builtin.command:
+        cmd: docker exec {{ container_name }} mkdir -p {{ item }}
+      loop:
+        - /tmp/mlruns
+
+    - name: Crear directorios en el contenedor mlflow
+      ansible.builtin.command:
+        cmd: docker exec -u root {{ container_name }} bash -c "mkdir -p /mlflow && chmod -R 777 /mlflow && chown -R 1000:1000 /mlflow "
+
+
+- name: Copy local -> running container with docker cp Airflow
+  hosts: localhost
+  gather_facts: false
+  vars:
+    container_name: facuvgaa-data-spotify-climate-to-s3-redshift-mlflow-airflow-1
+    container_dest: /opt/airflow/dags
+    local_src_dir: ../dags
+
+  tasks:
+    - name: Copiar árbol usando docker cp
+      ansible.builtin.command:
+        cmd: docker cp "{{ local_src_dir }}/." "{{ container_name }}:{{ container_dest }}/"
