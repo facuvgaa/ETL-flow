@@ -56,11 +56,22 @@ Además, un entorno de **Jupyter Notebook dockerizado** permite consumir datos d
 ```
 
 # 2. Configurar variables de entorno
- ## Editar infra/.example.env y poner al menos tus credenciales de AWS: 
+ ## Editar infra/.example.env y poner al menos tus credenciales de AWS, las credenciles de  Openweathermap , credenciales spotify, junto con el chart para extraer info de spotify: 
 ```bash
 # AWS_ACCESS_KEY_ID=your_access_key
 # AWS_SECRET_ACCESS_KEY=your_secret_key
 # AWS_DEFAULT_REGION=us-east-1
+
+OPENWEATHERMAP_API_KEY=
+CITY_DATA=Tucuman,AR
+
+
+#spotify api
+
+CLIENT_ID_SPOTIFY=
+CLIENT_SECRET_SPOTIFY=
+TRACK_LIST=2U3UUpx6ocHXgvcXmq0YBw
+
 ```
 ```bash
 # Copiar el archivo de ejemplo a .env
