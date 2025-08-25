@@ -126,4 +126,14 @@ docker-compose up -d mlflow
 - 🖥️ Proyecto pensado para **pruebas locales** y despliegue en **AWS**.
 - 🐍 Recomendado **Python 3.12**.
 - 📦 Mantener librerías actualizadas:
+- 
+# ETL Flow Dashboard
+
+Este proyecto muestra un **pipeline completo** orquestado con **Airflow** y registrado en **MLflow**:
+
+## Airflow
+![Airflow](docs/airflow.png)
+
+## MLflow
+![MLflow](docs/mlflow.png)
 
