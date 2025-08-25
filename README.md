@@ -53,13 +53,12 @@ Además, un entorno de **Jupyter Notebook dockerizado** permite consumir datos d
 ├── install.sh            # Instalador de dependencias básicas (Docker, Compose, Make)
 ├── requirements.txt      # Dependencias de Python
 └── README.md             # Documentación principal
-
+```
 
 # 1. Instalar dependencias básicas (Docker, Docker Compose y Make)
 ```bash
 ./install.sh
 ```
-
 # 2. Configurar variables de entorno
 
  ### Copiar el archivo de ejemplo a .env
