@@ -197,9 +197,9 @@ Additionally, a **dockerized Jupyter Notebook** environment allows consuming dat
 └── README.md             # Main documentation
 ```
 1. Install Basic Dependencies (Docker, Docker Compose, Make)
-   ```bash
+```bash
 ./install.sh
-``
+```
 
 2. Configure Environment Variables
 Copy example file to .env
