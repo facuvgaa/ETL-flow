@@ -49,3 +49,27 @@ Además, un entorno de **Jupyter Notebook dockerizado** permite consumir datos d
 ├── requirements.txt      # Dependencias de Python
 └── README.md             # Documentación principal
 
+# 1. Instalar dependencias básicas (Docker, Docker Compose y Make)
+./install.sh
+
+# 2. Configurar variables de entorno
+# Editar infra/.example.env y poner al menos tus credenciales de AWS:
+# AWS_ACCESS_KEY_ID=your_access_key
+# AWS_SECRET_ACCESS_KEY=your_secret_key
+# AWS_DEFAULT_REGION=us-east-1
+
+# Copiar el archivo de ejemplo a .env
+cp infra/.example.env infra/.env
+
+# 3. Levantar la infraestructura con Terraform (vía Docker + Make)
+
+# Inicializar Terraform
+make infra
+
+# Revisar el plan de ejecución
+make plan
+
+# Aplicar cambios (crear la infraestructura en AWS)
+make apply
+
+
