@@ -56,8 +56,8 @@ Además, un entorno de **Jupyter Notebook dockerizado** permite consumir datos d
 ```
 
 # 2. Configurar variables de entorno
+   # Editar infra/.example.env y poner al menos tus credenciales de AWS:
 ```bash
-# Editar infra/.example.env y poner al menos tus credenciales de AWS:
 # AWS_ACCESS_KEY_ID=your_access_key
 # AWS_SECRET_ACCESS_KEY=your_secret_key
 # AWS_DEFAULT_REGION=us-east-1
