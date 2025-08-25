@@ -313,4 +313,13 @@ resource "aws_glue_job" "s3_to_redshift_job" {
   connections = [aws_glue_connection.glue_vpc_connection.name]
   max_retries = 1
 }
+resource "null_resource" "generate_env_files" {
+  triggers = {
+    always_run = timestamp()
+  }
 
+  provisioner "local-exec" {
+    command     = "python3 ../generate_env.py"
+    working_dir = "${path.module}"  # path.module apunta a infra/ o infra/infra/ según tu caso
+  }
+}
