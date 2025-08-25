@@ -11,8 +11,8 @@ Además, un entorno de **Jupyter Notebook dockerizado** permite consumir datos d
 1. **Infraestructura (Terraform)**
    - Crea en AWS:
      - Buckets de **S3** para data lake.
+     - **Glue jobs** para union y migracion a redshift.
      - **Redshift Cluster** para data warehouse.
-     - **Glue Catalog** para metadatos.
      - Roles y políticas de **IAM**.
      - **Secrets Manager** para credenciales seguras.
 
@@ -31,15 +31,21 @@ Además, un entorno de **Jupyter Notebook dockerizado** permite consumir datos d
 
 - Apache Airflow, Terraform, AWS (S3, Redshift, Glue, Secrets Manager)  
 - MLflow, Jupyter Notebook  
-- Docker & docker-compose  
+- Docker & docker-compose
+- spark jobs y python jobs
 - Librerías personalizadas: `facu-weather-flow`, `facu-music-flow`
 
 ### 📂 Estructura
 
 ```bash
-├── ansible/              # 
+├── ansible/              # Playbooks y roles de Ansible
 ├── dags/                 # DAGs y configuración de Airflow
-├── notebooks/            # Notebooks para entrenar modelos
-├── docker-compose.yml    # Orquestación local
-├── .env                  # Variables de entorno
-└── README.md
+├── infra/                # Infraestructura como código (Terraform)
+├── mlflow/               # Configuración de MLflow para experiment tracking
+├── docker-compose.yml    # Orquestación local con Docker Compose
+├── flow.excalidraw       # Diagrama del flujo del proyecto
+├── generate_env.py       # Script para generar archivos .env automáticamente
+├── install.sh            # Instalador de dependencias básicas (Docker, Compose, Make)
+├── requirements.txt      # Dependencias de Python
+└── README.md             # Documentación principal
+
