@@ -111,24 +111,19 @@ docker-compose up -d mlflow
 # Acceder a MLflow: http://localhost:5000
 ```
 
-# 5. Ejecutar DAGs y entrenar modelos
+## 5. 🚀 Ejecutar DAGs y entrenar modelos
 
-1. Airflow detectará los DAGs dentro de dags/.
+1. 📂 Airflow detectará automáticamente los DAGs dentro de `dags/`.
+2. ▶️ Ejecutar los DAGs desde la **UI** o **CLI**.
+3. 💾 Los datos se cargarán en **S3** y **Redshift**.
+4. 📝 Abrir **Jupyter Notebook** y entrenar modelos conectándose a **Redshift**.
+5. 🏷️ Registrar los modelos entrenados en **MLflow**.
 
-2. Ejecutar los DAGs desde UI o CLI.
+---
 
-3. Los datos se cargarán en S3 y Redshift.
+## 6. 📝 Notas finales
 
-4. Abrir Jupyter Notebook y entrenar modelos conectándose a Redshift.
-
-5. Registrar modelos en MLflow.
-
-
-6. Notas finales
-
-Proyecto pensado para pruebas locales y despliegue en AWS.
-
-Recomendado Python 3.12.
-
-Mantener librerías actualizadas:
+- 🖥️ Proyecto pensado para **pruebas locales** y despliegue en **AWS**.
+- 🐍 Recomendado **Python 3.12**.
+- 📦 Mantener librerías actualizadas:
 
